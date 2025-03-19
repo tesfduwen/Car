@@ -29,6 +29,7 @@ void Timer0_Init(void)		//100微秒@11.0592MHz
 
 unsigned char compare = 0;      //PWM程序内部比较值
 unsigned char speed1,speed2;    //speed1左侧两轮速度,speed2右侧两轮速度
+speed1 = 0; speed2 = 0;
 
 void Time0_Runtine (void) interrupt 1
 {
