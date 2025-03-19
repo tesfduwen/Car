@@ -40,20 +40,16 @@ void Time0_Runtine (void) interrupt 1
     if (speed2>compare)
         {
             EN2 = 1;
-            EN4 = 1;
         }else
         {
             EN2 = 0;
-            EN4 = 0;
         }
     if (speed1>compare)
         {
             EN1 = 1;
-            EN3 = 1;
         }else
         {
             EN1 = 0;
-            EN3 = 0;
         }
 }
 
