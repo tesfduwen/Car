@@ -23,13 +23,12 @@ void Timer0_Init(void)		//100微秒@11.0592MHz
 	TF0 = 0;				//清除TF0标志
 	TR0 = 1;				//定时器0开始计时
     ET0 = 1;                //定时器0中断允许开关
-    EA = 0;                 //定时器总开关
+    EA = 1;                 //定时器总开关
     PT0 = 0;                //定时器0中断优先级
 }
 
 unsigned char compare = 0;      //PWM程序内部比较值
 unsigned char speed1,speed2;    //speed1左侧两轮速度,speed2右侧两轮速度
-speed1 = 0; speed2 = 0;
 
 void Time0_Runtine (void) interrupt 1
 {
@@ -55,6 +54,8 @@ void Time0_Runtine (void) interrupt 1
 
 void main()
 {
+    speed1 = 0;
+    speed2 = 0;
     Timer0_Init();
     while (1)
     {
