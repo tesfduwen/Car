@@ -35,7 +35,6 @@ void auto_ctrl ()
     }
     if (ST0==1)   //检测到障碍物，绕开
     {
-        turn_right(25,500);
-        turn_left(25,500);
+        turn_left(25,1000);
     }
 }
