@@ -33,9 +33,9 @@ void auto_ctrl_u()
     }
     /* 优先级4: 大角度转向 */
     else if(SHARP_LEFT) {
-        turn_left(99,1000);
+        turn_left(50,1000);
     } 
     else if(SHARP_RIGHT) {
-        turn_right(99,1000);
+        turn_right(50,1000);
     }
 }
