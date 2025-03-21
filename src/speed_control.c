@@ -1,6 +1,9 @@
-#include <delay1ms.h>
-
 extern unsigned char speed1,speed2;
+extern bit is_turning;
+extern bit is_stop;
+extern unsigned char turn_time;
+extern unsigned char stop_time;
+extern unsigned char ori_speed1,ori_speed2;
 
 void straight (unsigned char speed)
 {
@@ -20,25 +23,32 @@ void right (unsigned char differ)
 
 void turn_left (unsigned char differ,unsigned char time)
 {
-    left(differ);
-    Delay1ms(time);
-    speed1 = speed1 + differ;
+    if (is_turning == 0){
+        is_turning = 1;
+        turn_time = time;
+        ori_speed1 = speed1;
+        ori_speed2 = speed2;
+        left(differ);
+    }
 }
 
 void turn_right (unsigned char differ,unsigned char time)
 {
-    right(differ);
-    Delay1ms(time);
-    speed2 = speed2 + differ;
+    if (is_turning == 0){
+        is_turning = 1;
+        turn_time = time;
+        ori_speed1 = speed1;
+        ori_speed2 = speed2;
+        right(differ);
+    }
 }
 
 void stop (unsigned char time)
 {
-    unsigned char s1 = speed1;
-    unsigned char s2 = speed2;
-    speed1 = 0;
-    speed2 = 0;
-    Delay1ms(time);
-    speed1 = s1;
-    speed2 = s2;
+    if (is_stop == 0){
+        is_stop = 1;
+        stop_time = time;
+        speed1 = 0;
+        speed2 = 0;
+    }
 }

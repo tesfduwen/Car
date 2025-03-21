@@ -27,8 +27,14 @@ void Timer0_Init(void)		//25微秒@11.0592MHz
     PT0 = 0;                //定时器0中断优先级
 }
 
-unsigned char compare = 0;      //PWM程序内部比较值
+volatile unsigned char compare = 0;      //PWM程序内部比较值
 volatile unsigned char speed1,speed2;    //speed1左侧两轮速度,speed2右侧两轮速度
+volatile unsigned char tick = 0;         //转向时间计数
+volatile bit is_turning = 0;             //是否正在转向
+volatile bit is_stop = 0;                //是否停止
+volatile unsigned char turn_time = 0;    //转向时间
+volatile unsigned char stop_time = 0;     //停止时间
+volatile unsigned char ori_speed1,ori_speed2;  //转向前的速度
 
 void Time0_Runtine (void) interrupt 1
 {
@@ -50,6 +56,25 @@ void Time0_Runtine (void) interrupt 1
         {
             EN1 = 0;
         }
+    if (++tick>=40){
+        tick = 0;
+        if (is_turning&&(turn_time>0)){
+            turn_time--;
+            if (turn_time==0){
+                speed1 = ori_speed1;
+                speed2 = ori_speed2;
+                is_turning = 0;
+            }
+        }
+        if (is_stop&&!is_turning&&(stop_time>0)){
+            stop_time--;
+            if (stop_time==0){
+                speed1 = ori_speed1;
+                speed2 = ori_speed2;
+                is_stop = 0;
+            }
+        }
+    }
 }
 
 void main()
@@ -59,6 +84,6 @@ void main()
     Timer0_Init();
     while (1)
     {
-        auto_ctrl();
+        auto_ctrl_u();
     }
 }
