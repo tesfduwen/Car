@@ -3,6 +3,7 @@
 
 unsigned char flag_b = 0;
 extern unsigned char white_num;
+bit ending = 0;
 
 #define LINE_CENTER (TR10==0 && TR20==1 && TR30==1 && TR40==0)
 #define LINE_LEFT (TR10==0 && TR20==1 && TR30==0 && TR40==0)
