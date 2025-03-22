@@ -64,7 +64,8 @@ void right_turn (unsigned char l_speed,unsigned char r_speed) {
 }
 
 void straight_time (unsigned char time,unsigned char speed) {
-    is_turning = 1;
-    turn_time = time;
+    is_turning = 1;    //标志计时开始
+    turn_time = time;   //设置计时时间
+    //此处不使用Delay的原因：防止程序阻塞
     go_straight(speed);
 }

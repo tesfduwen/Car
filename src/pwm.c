@@ -16,6 +16,7 @@ void Timer0_Init(void)		//25微秒@11.0592MHz
     PT0 = 0;                //定时器0中断优先级
 }
 
+//使用volatile关键字声明变量，预防编译器优化引起的错误
 volatile unsigned char compare = 0;      //PWM程序内部比较值
 volatile unsigned char speed1,speed2;    //speed1左侧两轮速度,speed2右侧两轮速度
 volatile bit is_turning = 0;             //是否正在转向
@@ -47,15 +48,15 @@ void Time0_Runtine (void) interrupt 1
         {
             EN1 = 0;
         }
-        if (++tick>=40){
-            tick = 0;
-            if (is_turning&&(turn_time>0)){
-                turn_time--;
-                if (turn_time==0){
-                    go_straight(196);
-                    white_num++;
-                    is_turning = 0;
-                }
+    if (++tick>=40){    //定时器约为25微秒，40次为1毫秒
+        tick = 0;
+        if (is_turning&&(turn_time>0)){
+            turn_time--;
+            if (turn_time==0){
+                go_straight(196);   //降低行驶速度
+                white_num++;
+                is_turning = 0;    //标志复位
             }
         }
+    }
 }
