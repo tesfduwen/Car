@@ -17,10 +17,6 @@ void Timer0_Init(void)		//25微秒@11.0592MHz
 
 volatile unsigned char compare = 0;      //PWM程序内部比较值
 volatile unsigned char speed1,speed2;    //speed1左侧两轮速度,speed2右侧两轮速度
-volatile unsigned char tick = 0;         //转向时间计数
-volatile bit is_turning = 0;             //是否正在转向
-volatile unsigned char turn_time = 0;    //转向时间
-volatile unsigned char ori_speed1,ori_speed2;  //转向前的速度
 
 void Time0_Runtine (void) interrupt 1
 {

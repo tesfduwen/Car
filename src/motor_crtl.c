@@ -48,9 +48,10 @@ void set_speed (unsigned char l_speed,unsigned char r_speed) {
 }
 
 void go_straight (unsigned char speed) {
+    all_stop();
+    set_speed(speed,speed);
     left_motor_f();
     right_motor_f();
-    set_speed(speed,speed);
 }
 
 void left_turn (unsigned char l_speed,unsigned char r_speed) {
