@@ -22,12 +22,16 @@ volatile bit is_turning = 0;             //是否正在转向
 volatile unsigned char turn_time = 0;    //转向时间
 volatile unsigned char tick = 0;         //转向时间计数
 volatile unsigned char white_num = 0;
+volatile long runing_time = 0;
 
 void Time0_Runtine (void) interrupt 1
 {
     TL0 = 0xE9;
     TH0 = 0xFF;             //从下面开始是PWM程序
     compare++;
+    if (runing_time<400000){
+        runing_time++;
+    }
     if (compare>=256) compare = 0;
     if (speed2>compare)
         {

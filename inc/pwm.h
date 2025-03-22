@@ -5,4 +5,5 @@ extern unsigned char speed1,speed2;    //speed1左侧两轮速度,speed2右侧�
 void Timer0_Init(void);
 extern bit is_turning;
 extern unsigned char turn_time;
+extern long runing_time;
 #endif

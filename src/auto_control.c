@@ -3,7 +3,8 @@
 
 unsigned char flag_b = 0;
 extern unsigned char white_num;
-bit ending = 0;
+unsigned char ending = 0;
+bit end_flag = 0;
 
 #define LINE_CENTER (TR10==0 && TR20==1 && TR30==1 && TR40==0)
 #define LINE_LEFT (TR10==0 && TR20==1 && TR30==0 && TR40==0)
@@ -12,21 +13,11 @@ bit ending = 0;
 #define RIGHT (TR10==0 && TR20==0 && TR30==0 && TR40==1)
 #define CROSS (TR10==0 && TR20==0 && TR30==0 && TR40==0)
 //#define START (flag_b==1 && TR10==1 && TR20==1 && TR30==1 && TR40==1)
-//#define END (flag_b==6 && TR10==1 && TR20==1 && TR30==1 && TR40==1)
 #define ALL_BLACK (TR10==1 && TR20==1 && TR30==1 && TR40==1)
 #define ALL_WHITE (TR10==0 && TR20==0 && TR30==0 && TR40==0)
 #define CENTER_WHITE (TR10==1 && TR20==0 && TR30==0 && TR40==1)
 
 void auto_control() {
-    //if (ALL_BLACK) {
-    //    flag_b++;
-    //}
-//    if (START) {
-//        go_straight(255);
-//    }
-//    if (END) {
-//        all_stop();
-//    }
     if (CENTER_WHITE) {
         all_stop();
         return;
