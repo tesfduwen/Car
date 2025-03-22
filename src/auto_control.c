@@ -1,7 +1,8 @@
 #include <car.h>
 #include <motor_ctrl.h>
 
-unsigned flag_b = 0;
+unsigned char flag_b = 0;
+extern unsigned char white_num;
 
 #define LINE_CENTER (TR10==0 && TR20==1 && TR30==1 && TR40==0)
 #define LINE_LEFT (TR10==0 && TR20==1 && TR30==0 && TR40==0)
@@ -34,7 +35,7 @@ void auto_control() {
         return;
     }
     if (LINE_LEFT) {
-        set_speed(37,255);
+        set_speed(24,255);
         if (ALL_WHITE) {
             go_straight(255);
             return;
@@ -44,7 +45,7 @@ void auto_control() {
         return;
     }
     if (LINE_RIGHT) {
-        set_speed(255,37);
+        set_speed(255,24);
         if (ALL_WHITE) {
             go_straight(255);
             return;
@@ -60,6 +61,13 @@ void auto_control() {
     if (RIGHT) {
             right_turn(255,64);
             return;
+    }
+    if (ALL_WHITE) {
+        if (white_num){
+            white_num = 0;
+        }else if (!white_num) {
+            straight_time(100,255);
+        }
     }
 }
 

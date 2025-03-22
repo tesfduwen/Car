@@ -62,3 +62,9 @@ void right_turn (unsigned char l_speed,unsigned char r_speed) {
     dif_motor_turn_right();
     set_speed(l_speed,r_speed);
 }
+
+void straight_time (unsigned char time,unsigned char speed) {
+    is_turning = 1;
+    turn_time = time;
+    go_straight(speed);
+}

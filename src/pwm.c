@@ -1,5 +1,6 @@
 #include <stc89c52.h>
 #include <car.h>
+#include <motor_ctrl.h>
 
 void Timer0_Init(void)		//25微秒@11.0592MHz
 {
@@ -17,6 +18,10 @@ void Timer0_Init(void)		//25微秒@11.0592MHz
 
 volatile unsigned char compare = 0;      //PWM程序内部比较值
 volatile unsigned char speed1,speed2;    //speed1左侧两轮速度,speed2右侧两轮速度
+volatile bit is_turning = 0;             //是否正在转向
+volatile unsigned char turn_time = 0;    //转向时间
+volatile unsigned char tick = 0;         //转向时间计数
+volatile unsigned char white_num = 0;
 
 void Time0_Runtine (void) interrupt 1
 {
@@ -37,5 +42,16 @@ void Time0_Runtine (void) interrupt 1
         }else
         {
             EN1 = 0;
+        }
+        if (++tick>=40){
+            tick = 0;
+            if (is_turning&&(turn_time>0)){
+                turn_time--;
+                if (turn_time==0){
+                    go_straight(196);
+                    white_num++;
+                    is_turning = 0;
+                }
+            }
         }
 }

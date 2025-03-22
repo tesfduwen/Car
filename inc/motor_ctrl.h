@@ -21,4 +21,6 @@ void set_speed (unsigned char l_speed,unsigned char r_speed);
 void left_turn (unsigned char l_speed,unsigned char r_speed);
 
 void right_turn (unsigned char l_speed,unsigned char r_speed);
+
+void straight_time (unsigned char time,unsigned char speed);
 #endif
