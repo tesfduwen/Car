@@ -3,17 +3,17 @@
 
 unsigned flag_b = 0;
 
-#define LINE_CENTER (TR10==1 && TR20==0 && TR30==0 && TR40==1)
-#define LINE_LEFT (TR10==1 && TR20==0 && TR30==1 && TR40==0)
-#define LINE_RIGHT (TR10==1 && TR20==1 && TR30==0 && TR40==1)
-#define LEFT (TR10==0 && TR20==1 && TR30==1 && TR40==1)
-#define RIGHT (TR10==1 && TR20==1 && TR30==1 && TR40==0)
-#define CROSS (TR10==1 && TR20==1 && TR30==1 && TR40==1)
+#define LINE_CENTER (TR10==0 && TR20==1 && TR30==1 && TR40==0)
+#define LINE_LEFT (TR10==0 && TR20==1 && TR30==0 && TR40==0)
+#define LINE_RIGHT (TR10==0 && TR20==0 && TR30==1 && TR40==0)
+#define LEFT (TR10==1 && TR20==0 && TR30==0 && TR40==0)
+#define RIGHT (TR10==0 && TR20==0 && TR30==0 && TR40==1)
+#define CROSS (TR10==0 && TR20==0 && TR30==0 && TR40==0)
 //#define START (flag_b==1 && TR10==1 && TR20==1 && TR30==1 && TR40==1)
 //#define END (flag_b==6 && TR10==1 && TR20==1 && TR30==1 && TR40==1)
-#define ALL_BLACK (TR10==0 && TR20==0 && TR30==0 && TR40==0)
-#define ALL_WHITE (TR10==1 && TR20==1 && TR30==1 && TR40==1)
-#define CENTER_WHITE (TR10==1 && TR20==1 && TR30==1 && TR40==0)
+#define ALL_BLACK (TR10==1 && TR20==1 && TR30==1 && TR40==1)
+#define ALL_WHITE (TR10==0 && TR20==0 && TR30==0 && TR40==0)
+#define CENTER_WHITE (TR10==1 && TR20==0 && TR30==0 && TR40==1)
 
 void auto_control() {
     //if (ALL_BLACK) {
